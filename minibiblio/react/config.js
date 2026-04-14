@@ -4,7 +4,7 @@ const config = {
     DEBUG: true,
     },
     production: {
-    API_URL: 'https://elmeudomini.com/api',
+    API_URL: 'https://bmaringonzalez3.ieti.site/api',
     DEBUG: false,
     }
 };
