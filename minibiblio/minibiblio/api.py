@@ -15,7 +15,7 @@ class LlibreOut(Schema):
     id: int
     titol: str
     autor: str
-    data_edicio: datetime.date
+    data_edicio: Optional[datetime.date]
     resum: Optional[str]
     imatge: Optional[str]
  

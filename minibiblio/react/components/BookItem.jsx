@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { getBookImages } from '../services/api';
 import config from '../config';
+
+function getMediaUrl(imagePath) {
+    if (!imagePath) return null;
+    const baseUrl = config.API_URL.replace('/api', '');
+    return `${baseUrl}/media/${imagePath}`;
+}
     
 function BookItem({ book }) {
     const [modalObert, setModalObert] = useState(false);
@@ -20,7 +26,7 @@ function BookItem({ book }) {
         setModalObert(false);
     }
     
-    const imageUrl = book.imatge ? config.API_URL + '/' + book.imatge : null;
+    const imageUrl = getMediaUrl(book.imatge);
     
     return (
         <div className="book-card">
@@ -68,7 +74,7 @@ function BookItem({ book }) {
                                     img.imatge && (
                                         <div key={img.id} className="image-item">
                                             <img 
-                                                src={config.API_URL + '/' + img.imatge} 
+                                                src={getMediaUrl(img.imatge)} 
                                                 alt={`Imatge ${index + 1}`}
                                                 className="thumbnail"
                                             />
