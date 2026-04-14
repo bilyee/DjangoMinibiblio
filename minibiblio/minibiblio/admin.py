@@ -7,7 +7,7 @@ class ImatgeInLine(admin.TabularInline):
     readonly_fields = ('preview',)
     model = ImatgeLlibre
     extra = 2
-    fields = ([])
+    fields = (['titol', 'autor', 'resum', 'data_edicio', 'imatge'])
     def preview(self, obj):
         if obj.imatge:
             return format_html('<img src="{}" width="100" style="object-fit: cover;" />', obj.imatge.url)
