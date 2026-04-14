@@ -25,7 +25,7 @@ def obtenir_libres(request):
             'autor': llibre.autor,
             'data_edicio': llibre.data_edicio,
             'resum': llibre.resum,
-            'imatge_principal': llibre.imatge_principal.url if llibre.imatge_principal else None,
+            'imatge': llibre.imatge.url if llibre.imatge else None,
         }
         for llibre in Llibre.objects.all().order_by('id')
     ]
