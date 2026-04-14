@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import { getBookImages } from '../services/api';
 import config from '../config';
-
-function getMediaUrl(imagePath) {
-    if (!imagePath) return null;
-    const baseUrl = config.API_URL.replace('/api', '');
-    return `${baseUrl}/media/${imagePath}`;
-}
     
 function BookItem({ book }) {
     const [modalObert, setModalObert] = useState(false);
@@ -26,13 +20,11 @@ function BookItem({ book }) {
         setModalObert(false);
     }
     
-    const imageUrl = getMediaUrl(book.imatge);
-    
     return (
         <div className="book-card">
-            {imageUrl && (
+            {book.imatge && (
                 <div className="book-image-container">
-                    <img src={imageUrl} alt={book.titol} className="book-image" />
+                    <img src={book.imatge} alt={book.titol} className="book-image" />
                 </div>
             )}
             <h3>{book.titol}</h3>
@@ -56,10 +48,10 @@ function BookItem({ book }) {
                     <p><strong>Resum:</strong> {book.resum || 'Sense descripció'}</p>
                     
                     {/* Imatge principal */}
-                    {imageUrl && (
+                    {book.imatge && (
                         <div className="modal-main-image">
                             <h4>Portada</h4>
-                            <img src={imageUrl} alt={book.titol} className="modal-image" />
+                            <img src={book.imatge} alt={book.titol} className="modal-image" />
                         </div>
                     )}
                     
@@ -74,7 +66,7 @@ function BookItem({ book }) {
                                     img.imatge && (
                                         <div key={img.id} className="image-item">
                                             <img 
-                                                src={getMediaUrl(img.imatge)} 
+                                                src={img.imatge} 
                                                 alt={`Imatge ${index + 1}`}
                                                 className="thumbnail"
                                             />

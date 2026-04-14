@@ -10,6 +10,10 @@ api = NinjaAPI()
 class ImatgeOut(Schema):
     id: int
     imatge: Optional[str]
+
+    @staticmethod
+    def resolve_imatge(obj):
+        return obj.imatge.url if obj.imatge else None
  
 class LlibreOut(Schema):
     id: int
@@ -18,6 +22,10 @@ class LlibreOut(Schema):
     data_edicio: Optional[datetime.date]
     resum: Optional[str]
     imatge: Optional[str]
+
+    @staticmethod
+    def resolve_imatge(obj):
+        return obj.imatge.url if obj.imatge else None
  
 @api.get("/llibres", response=List[LlibreOut])
 @api.get("/llibres/", response=List[LlibreOut])
