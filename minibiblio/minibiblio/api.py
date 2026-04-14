@@ -22,10 +22,6 @@ class LlibreOut(Schema):
     data_edicio: Optional[datetime.date]
     resum: Optional[str]
     imatge: Optional[str]
-
-    @staticmethod
-    def resolve_imatge(obj):
-        return obj.imatge.url if obj.imatge else None
  
 @api.get("/llibres", response=List[LlibreOut])
 @api.get("/llibres/", response=List[LlibreOut])
@@ -37,3 +33,16 @@ def obtenir_libres(request):
 def obtenir_imatges_llibre(request, llibre_id: int):
     qs = ImatgeLlibre.objects.filter(llibre_id=llibre_id)
     return qs
+
+def obtenir_libres(request):
+    return [
+        {
+            'id': llibre.id,
+            'titol': llibre.titol,
+            'autor': llibre.autor,
+            'data_edicio': llibre.data_edicio,
+            'resum': llibre.resum,
+            'imatge': llibre.imatge_principal.url if llibre.imatge_principal else None,
+        }
+        for llibre in Llibre.objects.all().order_by('id')
+    ]
