@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import *
-from django.contrib import admin
 from django.utils.html import format_html
+from django.contrib.auth.admin import UserAdmin
 
 class ImatgeInLine(admin.TabularInline):
     readonly_fields = ('preview',)
@@ -32,6 +32,14 @@ class LlibreAdmin(admin.ModelAdmin):
  
     vista_previa_imatge.short_description = 'Previsualització'
 
+class UsuariAdmin(UserAdmin):
+    fieldsets = UserAdmin.fieldsets + (
+            ("Altres dades (API auth)", {
+                'fields': ('auth_token',),
+            }),
+    )
+    readonly_fields = ["auth_token",]
+
 # Register your models here.
 admin.site.register(Llibre, LlibreAdmin)
-admin.site.register(Usuari)
+admin.site.register(Usuari, UsuariAdmin)
