@@ -18,6 +18,24 @@ body {
   text-align: left;
 }
 
+.book-image-container {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.book-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 h1 {
   color: #333;
 }
@@ -44,4 +62,57 @@ ul li {
 
 p {
   color: black;
+}
+
+/* Estilos para imatges del modal */
+.modal-main-image {
+  margin: 20px 0;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.modal-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.modal-additional-images {
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.image-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.no-images {
+  color: #999;
+  font-style: italic;
+  margin-top: 10px;
 }

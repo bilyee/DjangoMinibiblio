@@ -6,6 +6,10 @@ import datetime
 from .models import *
  
 api = NinjaAPI()
+
+class ImatgeOut(Schema):
+    id: int
+    imatge: Optional[str]
  
 class LlibreOut(Schema):
     id: int
@@ -13,9 +17,15 @@ class LlibreOut(Schema):
     autor: str
     data_edicio: datetime.date
     resum: Optional[str]
+    imatge: Optional[str]
  
 @api.get("/llibres", response=List[LlibreOut])
 @api.get("/llibres/", response=List[LlibreOut])
 def obtenir_libres(request):
     qs = Llibre.objects.all()
+    return qs
+
+@api.get("/llibres/{llibre_id}/imatges", response=List[ImatgeOut])
+def obtenir_imatges_llibre(request, llibre_id: int):
+    qs = ImatgeLlibre.objects.filter(llibre_id=llibre_id)
     return qs

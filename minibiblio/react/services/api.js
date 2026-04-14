@@ -16,3 +16,18 @@ export const getBooks = () => {
         return [];
     });
 };
+
+export const getBookImages = (bookId) => {
+    console.log('obtenint imatges del llibre...');
+    return fetch(API_BASE_URL + `/llibres/${bookId}/imatges`)
+    .then((response) => {
+        if (!response.ok) {
+        throw new Error("Error l'obtenir les imatges");
+        }
+        return response.json();
+    })
+    .catch((error) => {
+        console.error('Error en la API:', error);
+        return [];
+    });
+};
